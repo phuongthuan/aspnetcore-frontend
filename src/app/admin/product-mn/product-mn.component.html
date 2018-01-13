@@ -1,0 +1,53 @@
+<p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+</p>
+<p>
+    <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
+</p>
+
+<div>
+    <ngx-datatable style="height: 639px;"
+        class="material"
+        [rows]="filteredProducts"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="50"
+        [scrollbarV]="true"
+        [sorts]="[{prop: 'name', dir: 'desc'}]">
+        <ngx-datatable-column name="#" [width]="30">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.id}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Thumbnail" [width]="120">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <img class="card-img-top" [src]="row.imageUrl" *ngIf="row.imageUrl" alt="Card image cap">
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Name" [width]="500">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.name}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Quantity" [width]="120">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.quantity}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Price" [width]="120">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.unitPrice}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Action">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <a [routerLink]="['/admin/products/', row.id]">Edit</a>
+            </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+</div>

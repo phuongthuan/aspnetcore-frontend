@@ -1,0 +1,46 @@
+<p>
+  <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
+</p>
+
+<div>
+  <ngx-datatable style="height: 639px;"
+      class="material"
+      [rows]="orders"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [scrollbarV]="true"
+      [sorts]="[{prop: 'name', dir: 'desc'}]">
+      <ngx-datatable-column name="#">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.id}}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Date Time">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row.date }}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Total Price">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.totalPrice}}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Customer">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.customerId}}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Action">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              <a [routerLink]="['/admin/orders/', row.id]">Edit</a>
+          </ng-template>
+      </ngx-datatable-column>
+
+  </ngx-datatable>
+</div>
